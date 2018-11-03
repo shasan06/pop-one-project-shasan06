@@ -15,10 +15,20 @@ board1 =  [ [_, _, _, M, _],
             [_, R, _, _, _],
             [_, _, _, R, _] ]
 
+board2 =  [ [_, _, _, M, _],
+            [_, _, R, M, _],
+            [_, R, M, R, _],
+            [_, R, _, _, _],
+            [_, _, _, R, _] ]
 def test_create_board():
-    create_board()
-    assert at((0,0)) == R
-    assert at((0,4)) == M
+	create_board()
+	for i in [0,1,2,3,4]:
+		assert len(board[i]) == 5
+		for j in range(5):
+			if (i==0 and j==4) or (i==2 and j==2) or (i==4 and j==0):
+				assert at((i,j)) == M
+			else:
+				assert at((i,j)) == R
     #eventually add at least two more test cases
 
 def test_set_board():
@@ -96,7 +106,5 @@ def test_choose_computer_move():
     assert choose_computer_move('R')==((0,0),'up')
 	
 def test_is_enemy_win():
-	assert 1==1
-   
-
+    assert 1==1
 
