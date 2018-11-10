@@ -36,14 +36,25 @@ def get_board():
     return board
 
 def string_to_location(s):
+    try:
+	    if s[0] in ("ABCDE")  and s[1] in "12345" :
+			for s0 in "ABCDE":
+				for s1 in "12345":
+					if s == s0+s1:
+						return (ord(s0)-ord("A"),ord(s1)-ord("1")}
+		else:
+			raise ValueError
+	except ValueError:
+		print("ValueError: " + s)
+	
+
     """Given a two-character string (such as 'A5'), returns the designated
        location as a 2-tuple (such as (0, 4)).
        The function should raise ValueError exception if the input
        is outside of the correct range (between 'A' and 'E' for s[0] and
        between '1' and '5' for s[1]
        """
-    return (0,0)
-
+   
 def location_to_string(location):
     """Returns the string representation of a location.
     Similarly to the previous function, this function should raise
@@ -58,7 +69,7 @@ def at(location):
 
 def all_locations():
     """Returns a list of all 25 locations on the board."""
-    return [(0,4) for i in range(25)]
+    return [((i,j) for j in range(5)) for i in range(5)]
 
 def adjacent_location(location, direction):
     """Return the location next to the given one, in the given direction.
@@ -104,7 +115,7 @@ def possible_moves_from(location):
        for the player at location to move. If there is no player at
        location, returns the empty list, [].
        You can assume that input will always be in correct range."""
-    return True
+    return []
 
 def is_legal_location(location):
     """Tests if the location is legal on a 5x5 board.
