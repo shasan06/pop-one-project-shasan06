@@ -1,4 +1,6 @@
-import pytest
+Python 3.6.2 (v3.6.2:5fd33b5, Jul  8 2017, 04:57:36) [MSC v.1900 64 bit (AMD64)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> import pytest
 from three_musketeers import *
 
 left = 'left'
@@ -15,11 +17,18 @@ board1 =  [ [_, _, _, M, _],
             [_, R, _, _, _],
             [_, _, _, R, _] ]
 
-board2 =  [ [_, _, _, M, _],
+board2 =  [ [_, M, _, R, _],
             [_, _, R, M, _],
-            [_, R, M, R, _],
-            [_, R, _, _, _],
-            [_, _, _, R, _] ]
+            [M, R, _, R, _],
+            [_, R, _, R, _],
+            [_, _, R, R, _] ]
+			
+board3 =  [ [r, r, r, r, m],
+            [r, r, r, r, r],
+            [r, r, m, r, r],
+            [r, r, r, r, r],
+            [m, r, r, r, r] ]
+			  
 def test_create_board():
 	create_board()
 	for i in [0,1,2,3,4]:
@@ -33,25 +42,43 @@ def test_create_board():
 
 def test_set_board():
     set_board(board1)
+    assert at((0,2)) == _
+    assert at((1,3)) == M
+    assert at((3,1)) == R     
+	set_board(board2)
     assert at((0,0)) == _
-    assert at((1,2)) == R
-    assert at((1,3)) == M    
+    assert at((1,3)) == M
+    assert at((3,1)) == R    
     #eventually add some board2 and at least 3 tests with it
 
 def test_get_board():
     set_board(board1)
-    assert board1 == get_board()
+    board0 == get_board()
+    assert board0[0][2] == _
+    assert board0[1][3] == M
+    assert board0[3][1] == R  
     #eventually add at least one more test with another board
 
 def test_string_to_location():
     with pytest.raises(ValueError):
         string_to_location('X3')
-    assert string_to_location('A0') == (0,0)
+		#???
+    assert string_to_location('A4') == (0,3)
+	assert string_to_location('E1') == (4,0)
+	assert string_to_location('C3') == (2,2)
+	
     #eventually add at least one more exception test and two more
     #test with correct inputs
 
 def test_location_to_string():
-    assert location_to_string((3,4))=='A3'
+    with pytest.raises(ValueError):
+        location_to_string((6,9))
+		#???
+
+    assert location_to_string((3,4)) == 'A3'
+	assert location_to_string((0,3)) == 'A4'
+	assert location_to_string((4,0)) == 'E1'
+	assert location_to_string((2,2)) == 'C3'
 
 
 def test_at():
@@ -108,3 +135,4 @@ def test_choose_computer_move():
 def test_is_enemy_win():
     assert 1==1
 
+© 2018 GitHub, Inc.

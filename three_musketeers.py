@@ -20,16 +20,18 @@ def create_board():
        Cardinal Richleau's men, and '-' denotes an empty space."""
     m = 'M'
     r = 'R'
-    board = [ [r, r, r, r, m],
-              [r, r, r, r, r],
-              [r, r, m, r, r],
-              [r, r, r, r, r],
-              [m, r, r, r, r] ]
+	board =   [ [r, r, r, r, m],
+			    [r, r, r, r, r],
+				[r, r, m, r, r],
+				[r, r, r, r, r],
+				[m, r, r, r, r] ] 
 
 def set_board(new_board):
     """Replaces the global board with new_board."""
     global board
-    board = new_board
+	for i in range(0,5):
+		for j in range(0,5):
+			board[i][j] = new_board[i][j]
 
 def get_board():
     """Just returns the board. Possibly useful for unit tests."""
@@ -37,11 +39,8 @@ def get_board():
 
 def string_to_location(s):
     try:
-	    if s[0] in ("ABCDE")  and s[1] in "12345" :
-			for s0 in "ABCDE":
-				for s1 in "12345":
-					if s == s0+s1:
-						return (ord(s0)-ord("A"),ord(s1)-ord("1")}
+	    if s[0] in ('ABCDE')  and s[1] in '12345' :
+			return ((ord(s[0])-ord('A'),ord(s[1])-ord('1'))
 		else:
 			raise ValueError
 	except ValueError:
@@ -60,7 +59,13 @@ def location_to_string(location):
     Similarly to the previous function, this function should raise
     ValueError exception if the input is outside of the correct range
     """
-    return 'A0'
+   try:
+	    if location[0] in range(0:5) and location[1] in rang(0,5) :
+			return (chr(ord('A')+location[0]))+ chr(ord('1') +location[1]))
+		else:
+			raise ValueError
+	except ValueError:
+		print("ValueError: " + location)
 
 def at(location):
     """Returns the contents of the board at the given location.
