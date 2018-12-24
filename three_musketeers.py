@@ -60,7 +60,7 @@ def location_to_string(location):
     ValueError exception if the input is outside of the correct range
     """
    try:
-	    if location[0] in range(0:5) and location[1] in rang(0,5) :
+	    if location[0] in range(0:5) and location[1] in range(0,5) :
 			return (chr(ord('A')+location[0]))+ chr(ord('1') +location[1]))
 		else:
 			raise ValueError
@@ -70,24 +70,43 @@ def location_to_string(location):
 def at(location):
     """Returns the contents of the board at the given location.
     You can assume that input will always be in correct range."""
-    return 'M'
+    return board[location[0]][location[1]]
 
 def all_locations():
     """Returns a list of all 25 locations on the board."""
-    return [((i,j) for j in range(5)) for i in range(5)]
+    return [[board[i][j] for j in range(5)] for i in range(5)]
 
 def adjacent_location(location, direction):
     """Return the location next to the given one, in the given direction.
        Does not check if the location returned is legal on a 5x5 board.
        You can assume that input will always be in correct range."""
    
-    return (0,0)
-
+    if (direction == 'up'):
+	    return (location[0]-1,location[1])
+    if (direction == 'down'):
+	    return (location[0]+1,location[1])
+	if (direction == 'left'):
+	    return (location[0],location[1]-1)
+	if (direction == 'right'):
+	    return (location[0],location[1]+1)
+		
 def is_legal_move_by_musketeer(location, direction):
     """Tests if the Musketeer at the location can move in the direction.
     You can assume that input will always be in correct range. Raises
     ValueError exception if at(location) is not 'M'"""
-    return True
+   try:
+	    if board(location[0],location[0]) == 'M':
+            if (direction == 'up'):
+	            return board[location[0]-1][location[1]] == 'R'
+            elif (direction == 'down'):
+	            return board[location[0]+1][location[1]] == 'R'
+	        elif (direction == 'left'):
+	            return board[location[0]][location[1]-1] == 'R'
+	        elif (direction == 'right'):
+	            return board[location[0]][location[1]+1] == 'R'
+		else:
+			raise ValueError
+	except ValueError:#?????
 
 def is_legal_move_by_enemy(location, direction):
     """Tests if the enemy at the location can move in the direction.
