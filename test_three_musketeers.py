@@ -120,7 +120,7 @@ def test_is_legal_move_by_musketeer():
     set_board(board1)
     assert is_legal_move_by_musketeer((1,3),'left')==True
     assert is_legal_move_by_musketeer((2,2),'right')==True	
-    assert is_legal_move_by_musketeer((0,3),'down')==False
+    assert is_legal_move_by_musketeer((2,2),'up')==True
     assert is_legal_move_by_musketeer((1,3),'right')==False
     assert is_legal_move_by_musketeer((1,3),'down')==True
 	#???exception
@@ -129,7 +129,7 @@ def test_is_legal_move_by_enemy():
     assert is_legal_move_by_enemy((0,0),'right')==False
 	assert is_legal_move_by_enemy((1,2),'left')==True
 	assert is_legal_move_by_enemy((0,3),'down')==False
-	assert is_legal_move_by_enemy((2,3),'right')==True
+	assert is_legal_move_by_enemy((2,1),'up')==True
 	assert is_legal_move_by_enemy((1,3),'down')==False
 	
 
