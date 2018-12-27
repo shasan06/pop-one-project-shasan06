@@ -29,11 +29,23 @@ board3 =  [ [r, r, r, r, m],
             [r, r, r, r, r],
             [m, r, r, r, r] ]
 			
-board4 =  [ [_, R_, _, M, _],
+board4 =  [ [_, R_, _,M,_],
             [_, R, _, _, _],
-            [R_, _, M, _, _],
+            [R, _, M, _, _],
             [_, R, _, _, _],
-            [R_, _, _, M, _] ]	
+            [R, _, _, M, _] ]	
+			
+board5 =  [ [_, R, _, M, _],
+            [_, R, _, _, _],
+            [R, _, _, M, _],
+            [_, R, _, _, _],
+            [R, _, _, M, _] ]
+			
+board6 =  [ [_, R, _, R, _],
+            [_, R, _, _, _],
+            [R, _, M, M, M],
+            [_, R, _, _, _],
+            [R, _, _, R, _] ]			
 
 			
 def test_create_board():
@@ -214,6 +226,21 @@ def test_choose_computer_move():
     assert choose_computer_move('R')==((0,0),'up')
 	
 def test_is_enemy_win():
-    assert 1==1
-
+    set_board(board1)
+	assert is_enemy_win() == False
+	
+	set_board(board2)
+	assert is_enemy_win() == False
+	
+	set_board(board3)
+	assert is_enemy_win() == False
+	
+	set_board(board4)
+	assert is_enemy_win() == False
+	
+	set_board(board5)
+	assert is_enemy_win() == True
+	
+	set_board(board6)
+	assert is_enemy_win() == True
 © 2018 GitHub, Inc.
