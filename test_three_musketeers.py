@@ -11,17 +11,17 @@ M = 'M'
 R = 'R'
 _ = '-'
 
-board1 =  [ [_, _, _, M, _],
-            [_, _, R, M, _],
-            [_, R, M, R, _],
-            [_, R, _, _, _],
-            [_, _, _, R, _] ]
+board1 =  [ [_, _, _, m, _],
+            [_, _, r, m, _],
+            [_, r, m, r, _],
+            [_, r, _, _, _],
+            [_, _, _, r, _] ]
 
-board2 =  [ [_, M, _, R, _],
-            [_, _, R, M, _],
-            [M, R, _, R, _],
-            [_, R, _, R, _],
-            [_, _, R, R, _] ]
+board2 =  [ [_, m, _, r, _],
+            [_, _, r, m, _],
+            [m, r, _, r, _],
+            [_, r, _, r, _],
+            [_, _, r, r, _] ]
 			
 board3 =  [ [r, r, r, r, m],
             [r, r, r, r, r],
@@ -29,34 +29,29 @@ board3 =  [ [r, r, r, r, m],
             [r, r, r, r, r],
             [m, r, r, r, r] ]
 			
-board4 =  [ [_, R_, _,M,_],
-            [_, R, _, _, _],
-            [R, _, M, _, _],
-            [_, R, _, _, _],
-            [R, _, _, M, _] ]	
+board4 =  [ [_, r_, _,m,_],
+            [_, r, _, _, _],
+            [r, _, m, _, _],
+            [_, r, _, _, _],
+            [m, _, _, m, _] ]	
 			
-board5 =  [ [_, R, _, M, _],
-            [_, R, _, _, _],
-            [R, _, _, M, _],
-            [_, R, _, _, _],
-            [R, _, _, M, _] ]
+board5 =  [ [_, r, _, m, _],
+            [_, r, _, _, _],
+            [r, _, _, m, _],
+            [_, r, _, _, _],
+            [r, _, _, m, _] ]
 			
-board6 =  [ [_, R, _, R, _],
-            [_, R, _, _, _],
-            [R, _, M, M, M],
-            [_, R, _, _, _],
-            [R, _, _, R, _] ]			
+board6 =  [ [_, r, _, r, _],
+            [_, r, _, _, _],
+            [r, _, m, m, m],
+            [_, r, _, _, _],
+            [r, _, _, r, _] ]			
 
 			
 def test_create_board():
 	create_board()
-	for i in [0,1,2,3,4]:
-		assert len(board[i]) == 5
-		for j in range(5):
-			if (i==0 and j==4) or (i==2 and j==2) or (i==4 and j==0):
-				assert at((i,j)) == M
-			else:
-				assert at((i,j)) == R
+	assert at((0,0)) == R
+	assert at((0,4)) == M
     #eventually add at least two more test cases
 
 def test_set_board():
