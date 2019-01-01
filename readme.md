@@ -7,6 +7,7 @@
       <li> devising your own mathematical model/solution of a problem and implementing it </li>
       <li> refactoring existing designs/specifications </li>
     </ul>
+	<!-- test -->
     <h1>General idea of the assignment</h1>
     <p>Write a program to play the game of <a href="http://en.wikipedia.org/wiki/Three_Musketeers_%28game%29">Three
         Musketeers</a>--human against computer.</p>
