@@ -261,23 +261,27 @@ def is_enemy_win():
 
 def save_game():
 		#file = open("previous_board.txt", "wb")
-		pickle.dump(board, open("board.txt", "wb"))
+		save_board = get_board()
+		pickle.dump(save_board, open("board.txt", "wb"))
 		pickle.dump(users_side,open("user.txt", "wb"))
 		##file.seek(0)
        
 def load_game():
+		global board
 		board = pickle.load(open("board.txt", "rb"))
 		global users_side
-		users_side = pickle.load(open("users.txt", "rb"))
+		users_side = pickle.load(open("user.txt", "rb"))
 		set_board(board)
 		if is_enemy_win():
 				print("The Cardinal Richleau's men win!")
 		else:pass
 		if users_side=="M":
 				print(" You play as the Musketeer(M)")
+				print_board()
 
 		else:
 				print(" You play as the enemy(R)")
+				print_board()
 			   
 		reload_game()
 
@@ -293,7 +297,7 @@ def print_board():
 		print(ch, "|", end = " ")
 		for j in range(0, 5):
 			print(board[i][j] + " ", end = " ")
-			print_board()
+		print()
 		ch = chr(ord(ch) + 1)
 	print()
 
@@ -378,10 +382,12 @@ def describe_move(who, location, direction):
 
 def start():
 	"""Plays the Three Musketeers Game."""
-#	users_side = choose_users_side()
-#	board = create_board()
-#	print_instructions()
+	global users_side
+	users_side = choose_users_side()
+	board = create_board()
+	print_instructions()
 	print_board()
+	
 	while True:
 		if has_some_legal_move_somewhere('M'):
 			board = move_musketeer(users_side)
@@ -402,7 +408,8 @@ def start():
 			
 def reload_game():
 	"""Plays the Three Musketeers Game."""
-    while True:
+	
+	while True:
 		if has_some_legal_move_somewhere('M'):
 			board = move_musketeer(users_side)
 			print_board()
